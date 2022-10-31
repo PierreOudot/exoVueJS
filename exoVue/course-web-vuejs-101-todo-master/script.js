@@ -4,14 +4,20 @@ let app ={
         return { //listing d'un ensemble de clés/valeurs qui seront renvoyés dans l'html
             input: "",
             todolist: [],
+            priority:0,
+            idCount:0
             
         }
     },
     methods:{
         addToTodoList(){
         if(this.input != ""){
-            this.todolist.push({task:this.input,
+            this.idCount++;
+            this.todolist.push({
+                id:this.idCount,
+                task:this.input,
                 isDone: false,
+                priority:this.priority
             });
             this.input="";
             }
@@ -19,6 +25,7 @@ let app ={
 
         clearTodoList(){
             this.todolist =[];
+            this.idCount =0;
         },
 
         isDoneDone(task){
@@ -31,15 +38,21 @@ let app ={
 };
 let App = Vue.createApp(app);
 App.component("todo",{
-    props:["content"],
+    props:["task"],
+    data(){
+        return task.id;
+    },
     methods:{
-
+        done(){
+            this.$emit("checked",task.id);
+        }
         
     },
-    template: `
-    <li class="m-2 p-4 rounded cursor-pointer bg-blue-200 hover:bg-blue-500 hover:text-white" @click="isDoneDone(content)"> 
+    template: 
+    `
+    <li class="m-2 p-4 rounded cursor-pointer bg-blue-200 hover:bg-blue-500 hover:text-white" @click="done"> 
     
-    <p v-bind:style="{'line-through':content.isDone}" >{{content}}</p>
+    <p v-bind:class="{'line-through':task.isDone}" >{{task.task}}</p>
     </li>
     `
 });

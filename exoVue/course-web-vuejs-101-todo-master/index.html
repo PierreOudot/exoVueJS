@@ -27,7 +27,7 @@
         <ul class="min-w-full">
           <!-- À vous de jouer ici -->
           
-            <todo v-for="task in todolist" v-bind:content="task.task"> </todo>
+            <todo v-for="task in todolist" v-bind:task="task"> </todo>
     
         </ul>
       </div>
@@ -35,7 +35,7 @@
           <input @keyup.enter="addToTodoList" class="flex-grow bg-gray-100 p-2 rounded-lg " placeholder="Add a task" v-model="input" >
           <!-- Quand vous en serez à l'étape sur la gestion de la priorité, décommentez la ligne suivante -->
           
-          <select class="bg-gray-100 p-2 rounded-lg ml-2">
+          <select class="bg-gray-100 p-2 rounded-lg ml-2"v-model="priority">
             <option value="0" selected>Normal 🖊</option>
             <option value="1">Important 🥊</option>
             <option value="2">Urgent 🚨</option>
