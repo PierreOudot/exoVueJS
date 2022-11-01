@@ -13,21 +13,21 @@
     <link rel="stylesheet" href="tailwind.css">
   </head>
   <body>
-    <div id="app" class="container mx-auto p-6 flex flex-col">
+    <div id="app" class="container mx-auto p-6 flex flex-col" >
        
       <div class="flex flex-col items-center bg-gray-100 p-8 rounded-xl">
         <h1 class="text-3xl font-black mb-6">TodoList</h1>
 
         
 
-        <button class="rounded-lg bg-blue-600 text-white ml-2 p-2 hover:bg-red-500">Sort by priority</button>
+        <button class="rounded-lg bg-blue-600 text-white ml-2 p-2 hover:bg-red-500" @click="sortByPriority">Sort by priority</button>
         
         <!--afficher la todolist, sous forme de composant vuejs-->
         
         <ul class="min-w-full">
           <!-- À vous de jouer ici -->
           
-            <todo v-for="task in todolist" v-bind:task="task"> </todo>
+            <todo v-for="task in todolist" v-bind:task="task"  @checked="isDoneDone(task)" > </todo>
     
         </ul>
       </div>
@@ -35,7 +35,7 @@
           <input @keyup.enter="addToTodoList" class="flex-grow bg-gray-100 p-2 rounded-lg " placeholder="Add a task" v-model="input" >
           <!-- Quand vous en serez à l'étape sur la gestion de la priorité, décommentez la ligne suivante -->
           
-          <select class="bg-gray-100 p-2 rounded-lg ml-2"v-model="priority">
+          <select class="bg-gray-100 p-2 rounded-lg ml-2" v-model="priority">
             <option value="0" selected>Normal 🖊</option>
             <option value="1">Important 🥊</option>
             <option value="2">Urgent 🚨</option>

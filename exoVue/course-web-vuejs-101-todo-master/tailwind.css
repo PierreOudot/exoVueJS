@@ -114,7 +114,7 @@ strong {
 2. Correct the odd 'em' font sizing in all browsers.
 */
 
-code,prout
+code,
 kbd,
 samp,
 pre {
@@ -128,7 +128,7 @@ pre {
   /* 1 */
   font-size: 1em;
   /* 2 */
-}prout
+}
 sub,
 sup {
   font-size: 75%;
@@ -144,7 +144,7 @@ sub {
 sup {
   top: -0.5em;
 }
-prout
+
 /*
 Tabular data
 ============

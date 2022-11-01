@@ -6,7 +6,6 @@ let app ={
             todolist: [],
             priority:0,
             idCount:0
-            
         }
     },
     methods:{
@@ -29,30 +28,38 @@ let app ={
         },
 
         isDoneDone(task){
-            task.isDone=true;
-        }
+            task.isDone= !task.isDone;
+        },
 
-        
-    }
-    
+        sortByPriority(){
+            this.todolist.sort(function(a,b){
+                if(a.priority === b.priority){
+                    return a.id-b.id;
+                }else{
+                    return b.priority - a.priority;
+                }
+            });
+        }     
+    } 
 };
 let App = Vue.createApp(app);
 App.component("todo",{
     props:["task"],
-    data(){
-        return task.id;
-    },
+    data(){return{
+        task:this.task
+    }   
+    },    
     methods:{
         done(){
-            this.$emit("checked",task.id);
+            this.$emit("checked",this.task);
         }
         
     },
     template: 
     `
-    <li class="m-2 p-4 rounded cursor-pointer bg-blue-200 hover:bg-blue-500 hover:text-white" @click="done"> 
+    <li class="m-2 p-4 rounded cursor-pointer bg-blue-200 hover:bg-blue-500 hover:text-white" @click="done" > 
     
-    <p v-bind:class="{'line-through':task.isDone}" >{{task.task}}</p>
+    <p v-bind:class="{'line-through':task.isDone}">{{task.task}}</p>
     </li>
     `
 });
