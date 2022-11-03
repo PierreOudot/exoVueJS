@@ -8,6 +8,14 @@ let app ={
             idCount:0
         }
     },
+
+    created(){
+        this.getTodolist();
+    },
+
+    updated(){
+        this.setTodolist();
+    },
     methods:{
         addToTodoList(){
         if(this.input != ""){
@@ -39,8 +47,19 @@ let app ={
                     return b.priority - a.priority;
                 }
             });
-        }     
-    } 
+        },
+        
+        setTodolist() {
+            localStorage.setItem('todolist', JSON.stringify(this.todolist));
+        },
+
+        getTodolist() {
+            this.todolist = JSON.parse(localStorage.getItem('todolist')) ?? []; //?? nullisj coalescence operator : return right member if left memeber is null
+        },
+
+
+    },
+
 };
 let App = Vue.createApp(app);
 App.component("todo",{
