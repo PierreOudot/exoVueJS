@@ -63,11 +63,9 @@ export default {
 
     toggleIsClicked(item){
       item.isClicked =! item.isClicked;
-    },
-
-    addToCart(item){
-      this.cart.push(item);
     }
+
+    
   },
 
   mounted(){
